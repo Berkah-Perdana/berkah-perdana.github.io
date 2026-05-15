@@ -2,268 +2,280 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Berkah Perdana Enterprise | eMart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Berkah Perdana | eMart Brunei</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* HIGH CONTRAST, SOLID COLORS, NO TRANSPARENCY, MINIMAL CSS */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #f0f2f5;
-            color: #1a1e2b;
-            line-height: 1.4;
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+            background: #eef5f2;
+            color: #1a2c2a;
+            line-height: 1.35;
         }
 
-        /* solid header */
+        /* HEADER */
         .header {
-            background: #0b2b26;
+            background: #0f3d36;
             color: white;
-            padding: 1rem 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 0.7rem 1rem;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 90;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .header-inner {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         .logo h1 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            letter-spacing: -0.3px;
         }
         .logo p {
-            font-size: 0.75rem;
-            opacity: 0.8;
+            font-size: 0.6rem;
+            opacity: 0.85;
         }
         .cart-btn {
-            background: #1e6f5c;
+            background: #289f8a;
             border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 40px;
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
             color: white;
-            font-weight: bold;
-            font-size: 1rem;
+            font-weight: 600;
+            font-size: 0.8rem;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: 0.2s;
-        }
-        .cart-btn:hover {
-            background: #0e5a49;
+            gap: 6px;
         }
         .cart-count {
-            background: #f4a261;
-            border-radius: 30px;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.8rem;
+            background: #f4cda6;
+            border-radius: 40px;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.7rem;
             font-weight: bold;
-            color: #1a1e2b;
+            color: #0f3d36;
         }
 
-        /* main layout */
         .container {
-            max-width: 1300px;
-            margin: 1.5rem auto;
-            padding: 0 1.5rem;
+            max-width: 1400px;
+            margin: 1rem auto;
+            padding: 0 0.8rem;
         }
 
-        /* customer card - solid style */
+        /* CUSTOMER CARD */
         .info-card {
             background: white;
-            border-radius: 20px;
-            padding: 1.2rem 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #d9e5e0;
         }
         .form-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.5rem;
+            gap: 0.7rem;
             align-items: flex-end;
         }
         .input-group {
-            flex: 1;
-            min-width: 180px;
+            flex: 1 1 130px;
+            min-width: 130px;
         }
         .input-group label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #2c3e50;
-            margin-bottom: 0.3rem;
+            color: #2b5b51;
+            margin-bottom: 0.2rem;
         }
         .input-group input {
             width: 100%;
-            padding: 0.7rem 1rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            font-size: 0.9rem;
-            background: white;
-            color: #0f172a;
-        }
-        .input-group input:focus {
-            outline: none;
-            border-color: #1e6f5c;
-            box-shadow: 0 0 0 2px rgba(30,111,92,0.2);
+            padding: 0.55rem 0.7rem;
+            border: 1px solid #cbdcd6;
+            border-radius: 18px;
+            font-size: 0.8rem;
+            background: #fff;
         }
         .btn-solid {
-            background: #1e6f5c;
+            background: #289f8a;
             border: none;
-            padding: 0.7rem 1.4rem;
+            padding: 0.55rem 1rem;
             border-radius: 40px;
             color: white;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 0.75rem;
             cursor: pointer;
-            font-size: 0.85rem;
-        }
-        .btn-solid:hover {
-            background: #0e5a49;
         }
         .customer-badge {
-            background: #e9ecef;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            background: #e0f0eb;
+            padding: 0.35rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
         }
 
-        /* search + filter simple */
+        /* FILTER */
         .filter-bar {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.7rem;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
         .search-box {
             background: white;
-            border: 1px solid #cbd5e1;
+            border: 1px solid #cce0da;
             border-radius: 60px;
-            padding: 0.5rem 1rem;
+            padding: 0.35rem 0.8rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             flex: 2;
-            min-width: 200px;
+            min-width: 150px;
         }
         .search-box input {
             border: none;
             background: transparent;
             width: 100%;
+            font-size: 0.8rem;
             outline: none;
-            font-size: 0.9rem;
         }
         .category-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
         .cat-pill {
             background: white;
-            border: 1px solid #cbd5e1;
-            padding: 0.4rem 1rem;
+            border: 1px solid #cbdcd6;
+            padding: 0.3rem 0.8rem;
             border-radius: 40px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 500;
             cursor: pointer;
+            white-space: nowrap;
         }
         .cat-pill.active {
-            background: #1e6f5c;
-            border-color: #1e6f5c;
+            background: #0f3d36;
+            border-color: #0f3d36;
             color: white;
         }
 
-        /* product grid - clean solid cards */
+        /* GRID RESPONSIF - TIDAK LONJONG */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
-            margin-top: 0.5rem;
+            gap: 1rem;
+            margin-top: 0.4rem;
         }
+
+        /* HP sempit: 2 kolom */
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* HP landscape & tablet kecil: 3 kolom */
+        @media (min-width: 481px) and (max-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        /* Tablet besar & landscape: 3 kolom */
+        @media (min-width: 641px) and (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        /* Laptop: 4 kolom */
+        @media (min-width: 901px) and (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        /* Monitor full / besar: 5 kolom */
+        @media (min-width: 1201px) {
+            .product-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        /* CARD PRODUK - SOLID DAN PADAT */
         .product-card {
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            transition: 0.2s;
-            border: 1px solid #e9ecef;
-        }
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2efe9;
+            transition: none;
         }
         .product-img {
-            height: 160px;
-            background: #eef2f3;
+            height: 85px;
+            background: #f6fbf9;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.2rem;
-            font-weight: normal;
+            font-size: 2.5rem;
+            padding: 0.2rem;
         }
         .product-info {
-            padding: 1rem 1rem 1.2rem;
+            padding: 0.5rem 0.6rem 0.8rem;
         }
         .product-name {
             font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
+            font-size: 0.75rem;
+            line-height: 1.2;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .product-price {
-            font-size: 1.3rem;
+            font-size: 0.85rem;
             font-weight: 800;
-            color: #1e6f5c;
-            margin: 0.5rem 0;
+            color: #1f6e5c;
+            margin: 0.25rem 0;
         }
         .qty-control {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            margin: 0.7rem 0;
+            gap: 0.3rem;
+            margin: 0.35rem 0;
         }
         .qty-control input {
-            width: 65px;
-            padding: 0.4rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 30px;
+            width: 45px;
+            padding: 0.2rem 0;
             text-align: center;
+            border: 1px solid #cce0da;
+            border-radius: 30px;
+            font-size: 0.7rem;
         }
         .add-cart {
-            background: #0b2b26;
+            background: #0f3d36;
             width: 100%;
             border: none;
-            padding: 0.6rem;
+            padding: 0.4rem 0;
             border-radius: 40px;
             color: white;
             font-weight: 600;
+            font-size: 0.7rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-        }
-        .add-cart:hover {
-            background: #1e6f5c;
+            gap: 4px;
         }
 
-        /* MODAL CART - solid background */
+        /* MODAL CART */
         .modal {
             display: none;
             position: fixed;
@@ -272,161 +284,126 @@
             z-index: 200;
             justify-content: center;
             align-items: center;
-            padding: 1rem;
+            padding: 0.8rem;
         }
         .modal.active {
             display: flex;
         }
         .modal-content {
             background: white;
-            max-width: 680px;
+            max-width: 550px;
             width: 100%;
             max-height: 90vh;
             border-radius: 28px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 25px 40px rgba(0,0,0,0.2);
         }
         .modal-header {
-            padding: 1.2rem 1.5rem;
-            background: #f8fafc;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 0.9rem 1.2rem;
+            background: #fef9ef;
+            border-bottom: 1px solid #e2efe9;
         }
         .modal-body {
             flex: 1;
             overflow-y: auto;
-            padding: 1rem 1.5rem;
+            padding: 0.8rem 1rem;
         }
         .cart-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 0.8rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-        .item-details {
-            flex: 2;
+            gap: 0.5rem;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #e9f0ed;
         }
         .item-actions {
             display: flex;
-            gap: 0.6rem;
+            gap: 0.4rem;
             align-items: center;
         }
         .qty-btn {
-            background: #e9ecef;
+            background: #e3f0ec;
             border: none;
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
         }
         .remove-btn {
-            background: #e63946;
+            background: #e05a5a;
             color: white;
             border: none;
-            padding: 0.3rem 0.9rem;
+            padding: 0.2rem 0.7rem;
             border-radius: 30px;
-            cursor: pointer;
+            font-size: 0.7rem;
         }
         .cart-total {
-            padding: 1rem 1.5rem;
-            background: #f9f9fb;
-            font-size: 1.3rem;
+            padding: 0.7rem 1.2rem;
+            background: #fcf9f2;
             font-weight: 800;
             text-align: right;
-            border-top: 2px solid #e2e8f0;
+            font-size: 1rem;
         }
         .order-note-area {
-            margin: 0 1.5rem 0.5rem 1.5rem;
+            margin: 0.4rem 1rem 0.2rem;
         }
         .order-note-area textarea {
             width: 100%;
-            border-radius: 16px;
-            padding: 0.7rem;
-            border: 1px solid #cbd5e1;
-            font-family: inherit;
+            border-radius: 20px;
+            padding: 0.5rem;
+            border: 1px solid #cbdcd6;
+            font-size: 0.7rem;
         }
         .checkout-actions {
-            padding: 1rem 1.5rem 1.5rem;
+            padding: 0.8rem 1rem 1rem;
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 0.5rem;
         }
-        .btn-wa {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 0.7rem 1rem;
-            border-radius: 40px;
-            font-weight: bold;
-            flex: 1;
-        }
-        .btn-tele {
-            background: #0088cc;
-            color: white;
-            border: none;
-            padding: 0.7rem 1rem;
-            border-radius: 40px;
-            font-weight: bold;
-            flex: 1;
-        }
-        .btn-email {
-            background: #2c3e50;
-            color: white;
-            border: none;
-            padding: 0.7rem 1rem;
-            border-radius: 40px;
-            font-weight: bold;
-            flex: 1;
-        }
-        .btn-clear {
-            background: #e63946;
-            color: white;
-            border: none;
-            padding: 0.7rem 1rem;
-            border-radius: 40px;
-        }
-        .empty-cart {
-            text-align: center;
-            padding: 2rem;
-            color: #64748b;
-        }
+        .btn-wa { background: #25D366; color: white; border: none; padding: 0.45rem 0.7rem; border-radius: 40px; font-weight: bold; flex:1; font-size:0.7rem;}
+        .btn-tele { background: #0088cc; color: white; border: none; padding: 0.45rem 0.7rem; border-radius: 40px; font-weight: bold; flex:1; font-size:0.7rem;}
+        .btn-email { background: #2c5f5a; color: white; border: none; padding: 0.45rem 0.7rem; border-radius: 40px; font-weight: bold; flex:1; font-size:0.7rem;}
+        .btn-clear { background: #e05a5a; color: white; border: none; padding: 0.45rem 0.7rem; border-radius: 40px; font-size:0.7rem;}
+
         footer {
-            background: #0b2b26;
-            color: #cbd5e1;
+            background: #0f3d36;
+            color: #cfebe5;
             text-align: center;
-            padding: 1.5rem;
-            margin-top: 2.5rem;
-            font-size: 0.8rem;
+            padding: 0.9rem;
+            margin-top: 2rem;
+            font-size: 0.65rem;
+        }
+        .ip-note {
+            background: #fef1e0;
+            border-top: 1px solid #fadbad;
+            padding: 0.5rem;
+            margin-top: 0.8rem;
+            font-size: 0.6rem;
+            text-align: center;
+            color: #4a2e1f;
+            border-radius: 18px;
         }
         .toast {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #1e293b;
+            bottom: 18px;
+            left: 18px;
+            right: 18px;
+            background: #1e2f2b;
             color: white;
-            padding: 0.7rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 500;
+            padding: 0.6rem;
+            border-radius: 60px;
+            text-align: center;
+            font-size: 0.7rem;
             z-index: 300;
             animation: fadeOut 2s forwards;
         }
         @keyframes fadeOut {
-            0% { opacity: 0; transform: translateY(10px); }
-            15% { opacity: 1; transform: translateY(0); }
+            0% { opacity: 0; transform: translateY(8px);}
+            15% { opacity: 1; transform: translateY(0);}
             85% { opacity: 1; }
-            100% { opacity: 0; visibility: hidden; }
-        }
-        @media (max-width: 650px) {
-            .container { padding: 0 1rem; }
-            .product-grid { grid-template-columns: 1fr; }
+            100% { opacity: 0; visibility: hidden;}
         }
     </style>
 </head>
@@ -436,362 +413,333 @@
     <div class="header-inner">
         <div class="logo">
             <h1>BERKAH PERDANA</h1>
-            <p>Enterprise · Trusted Supplier</p>
+            <p>Enterprise · Brunei Darussalam</p>
         </div>
-        <button class="cart-btn" id="openCartBtn">
-            🛒 Cart <span class="cart-count" id="cartCount">0</span>
-        </button>
+        <button class="cart-btn" id="openCartBtn">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
     </div>
 </header>
 
 <div class="container">
-    <!-- Customer information section (solid) -->
     <div class="info-card">
         <div class="form-row">
-            <div class="input-group">
-                <label>Full name *</label>
-                <input type="text" id="customerName" placeholder="e.g., John Carter" autocomplete="off">
-            </div>
-            <div class="input-group">
-                <label>nomor syekh amri test WhatsApp (with country code)</label>
-                <input type="text" id="customerWa" placeholder="+62 812 3456 7890" value="+62">
-            </div>
-            <div class="input-group">
-                <label>Telegram username</label>
-                <input type="text" id="customerTelegram" placeholder="@username or ID">
-            </div>
-            <button class="btn-solid" id="saveCustomerBtn">Sv Profile Pelanggan</button>
+            <div class="input-group"><label>Nama Lengkap *</label><input type="text" id="customerName" placeholder="Nama pembeli" autocomplete="off"></div>
+            <div class="input-group"><label>WhatsApp (anda)</label><input type="text" id="customerWa" placeholder="+62 812..." value="+62"></div>
+            <div class="input-group"><label>Telegram</label><input type="text" id="customerTelegram" placeholder="@username"></div>
+            <button class="btn-solid" id="saveCustomerBtn">✅ Simpan</button>
         </div>
-        <div style="margin-top: 10px; font-size:0.8rem;" id="customerStatus"></div>
+        <div id="customerStatus" class="customer-badge"></div>
     </div>
 
-    <!-- Filter & search -->
     <div class="filter-bar">
-        <div class="search-box">
-            🔍 <input type="text" id="searchInput" placeholder="Search products...">
-        </div>
+        <div class="search-box">🔍 <input type="text" id="searchInput" placeholder="Cari produk..."></div>
         <div class="category-group" id="categoryFilter"></div>
     </div>
 
-    <!-- Product grid -->
     <div class="product-grid" id="productGrid"></div>
+
+    <!-- IP DETECTION NOTE buat penjual -->
+    <div class="ip-note" id="ipDetectionBox">
+        🌐 Mendeteksi jaringan lokal...
+    </div>
 </div>
 
-<!-- Cart Modal -->
 <div class="modal" id="cartModal">
     <div class="modal-content">
-        <div class="modal-header">
-            <h3>🛒 Your Cart</h3>
-            <button id="closeModalBtn" style="background:#e9ecef; border:none; width:32px; border-radius:30px; cursor:pointer;">✕</button>
-        </div>
-        <div class="modal-body" id="cartItemsContainer">
-            <div class="empty-cart">Cart is empty</div>
-        </div>
-        <div class="order-note-area">
-            <textarea id="orderNote" rows="2" placeholder="Order notes (delivery time, special request) ..."></textarea>
-        </div>
+        <div class="modal-header"><h3>🛍️ Keranjang</h3><button id="closeModalBtn" style="background:#e2e8e4; border:none; width:30px; border-radius:30px;">✕</button></div>
+        <div class="modal-body" id="cartItemsContainer"><div class="empty-cart" style="text-align:center;padding:1.5rem;">Kosong</div></div>
+        <div class="order-note-area"><textarea id="orderNote" rows="2" placeholder="Catatan order (alamat, waktu, dll)"></textarea></div>
         <div class="cart-total" id="cartTotalAmount">Total: Rp 0</div>
         <div class="checkout-actions">
-            <button class="btn-clear" id="clearCartBtn">🗑 Clear cart</button>
-            <button class="btn-wa" id="waCheckoutBtn">💬 WhatsApp</button>
-            <button class="btn-tele" id="teleCheckoutBtn">✈️ Telegram</button>
+            <button class="btn-clear" id="clearCartBtn">🗑 Kosongkan</button>
+            <button class="btn-wa" id="waCheckoutBtn">💬 WhatsApp ke Owner</button>
+            <button class="btn-tele" id="teleCheckoutBtn">✈️ Telegram Owner</button>
             <button class="btn-email" id="emailCheckoutBtn">📧 Email Invoice</button>
         </div>
     </div>
 </div>
 
 <footer>
-    Berkah Perdana Enterprise — International Order | Support: +6738244692 | business@berkahperdana.com
+    Berkah Perdana Enterprise — Owner/Admin Brunei: +6738244692 | email: business@berkahperdana.com
 </footer>
 
 <script>
-    // ---------- PRODUCTS (international friendly, clean names) ----------
-    const products = [
-        { id: 1, name: 'Premium Rice 5kg', price: 75000, icon: '🍚', category: 'Staples' },
-        { id: 2, name: 'Cooking Oil 2L', price: 38000, icon: '🫒', category: 'Staples' },
-        { id: 3, name: 'Granulated Sugar 1kg', price: 15000, icon: '🍬', category: 'Staples' },
-        { id: 4, name: 'Fresh Eggs (30 pcs)', price: 55000, icon: '🥚', category: 'Fresh' },
-        { id: 5, name: 'Wheat Flour 1kg', price: 12000, icon: '🌾', category: 'Baking' },
-        { id: 6, name: 'Ground Coffee 250g', price: 35000, icon: '☕', category: 'Beverages' },
-        { id: 7, name: 'UHT Milk 1L', price: 18000, icon: '🥛', category: 'Beverages' },
-        { id: 8, name: 'Bath Soap Lifebuoy', price: 5000, icon: '🧼', category: 'Personal Care' }
-    ];
+    (function() {
+        // PRODUK
+        const products = [
+            { id: 1, name: 'Beras Premium 5kg', price: 75000, icon: '🍚', category: 'Pokok' },
+            { id: 2, name: 'Minyak Goreng 2L', price: 38000, icon: '🫒', category: 'Pokok' },
+            { id: 3, name: 'Gula Pasir 1kg', price: 15000, icon: '🍬', category: 'Pokok' },
+            { id: 4, name: 'Telur Fresh 30pcs', price: 55000, icon: '🥚', category: 'Segar' },
+            { id: 5, name: 'Tepung Terigu 1kg', price: 12000, icon: '🌾', category: 'Roti' },
+            { id: 6, name: 'Kopi Bubuk 250g', price: 35000, icon: '☕', category: 'Minuman' },
+            { id: 7, name: 'Susu UHT 1L', price: 18000, icon: '🥛', category: 'Minuman' },
+            { id: 8, name: 'Sabun Mandi', price: 5000, icon: '🧼', category: 'Perawatan' },
+            { id: 9, name: 'Mie Instan (isi 5)', price: 15000, icon: '🍜', category: 'Cepat Saji' },
+            { id: 10, name: 'Air Mineral 1.5L', price: 6000, icon: '💧', category: 'Minuman' },
+            { id: 11, name: 'Kecap Manis 600ml', price: 17000, icon: '🍶', category: 'Bumbu' },
+            { id: 12, name: 'Sarden Kaleng', price: 22000, icon: '🐟', category: 'Kalengan' }
+        ];
 
-    // ---------- STATE ----------
-    let cart = JSON.parse(localStorage.getItem('bp_cart') || '[]');
-    let customer = {
-        name: localStorage.getItem('bp_customer_name') || '',
-        wa: localStorage.getItem('bp_customer_wa') || '+62',
-        telegram: localStorage.getItem('bp_customer_tg') || ''
-    };
+        let cart = [];
+        try { const saved = localStorage.getItem('bp_cart_fix'); if(saved) cart = JSON.parse(saved); } catch(e) { cart = []; }
+        let customer = {
+            name: localStorage.getItem('bp_cust_name') || '',
+            wa: localStorage.getItem('bp_cust_wa') || '+62',
+            telegram: localStorage.getItem('bp_cust_tg') || ''
+        };
 
-    let activeCategory = 'All';
-    let searchQuery = '';
+        let activeCategory = 'All';
+        let searchQuery = '';
 
-    // DOM elements
-    const productGrid = document.getElementById('productGrid');
-    const cartCountSpan = document.getElementById('cartCount');
-    const cartModal = document.getElementById('cartModal');
-    const cartItemsContainer = document.getElementById('cartItemsContainer');
-    const cartTotalAmount = document.getElementById('cartTotalAmount');
-    const customerNameInput = document.getElementById('customerName');
-    const customerWaInput = document.getElementById('customerWa');
-    const customerTelegramInput = document.getElementById('customerTelegram');
-    const customerStatusDiv = document.getElementById('customerStatus');
-    const saveCustomerBtn = document.getElementById('saveCustomerBtn');
-    const openCartBtn = document.getElementById('openCartBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const clearCartBtn = document.getElementById('clearCartBtn');
-    const waCheckoutBtn = document.getElementById('waCheckoutBtn');
-    const teleCheckoutBtn = document.getElementById('teleCheckoutBtn');
-    const emailCheckoutBtn = document.getElementById('emailCheckoutBtn');
-    const orderNoteArea = document.getElementById('orderNote');
-    const searchInput = document.getElementById('searchInput');
-    const categoryFilterDiv = document.getElementById('categoryFilter');
+        // DOM
+        const productGrid = document.getElementById('productGrid');
+        const cartCountSpan = document.getElementById('cartCount');
+        const cartModal = document.getElementById('cartModal');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartTotalAmount = document.getElementById('cartTotalAmount');
+        const customerNameInput = document.getElementById('customerName');
+        const customerWaInput = document.getElementById('customerWa');
+        const customerTelegramInput = document.getElementById('customerTelegram');
+        const customerStatusDiv = document.getElementById('customerStatus');
+        const saveCustomerBtn = document.getElementById('saveCustomerBtn');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+        const waCheckoutBtn = document.getElementById('waCheckoutBtn');
+        const teleCheckoutBtn = document.getElementById('teleCheckoutBtn');
+        const emailCheckoutBtn = document.getElementById('emailCheckoutBtn');
+        const orderNoteArea = document.getElementById('orderNote');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilterDiv = document.getElementById('categoryFilter');
+        const ipDetectionBox = document.getElementById('ipDetectionBox');
 
-    // helper toast
-    function showToast(msg, isError = false) {
-        let toast = document.querySelector('.toast');
-        if(toast) toast.remove();
-        const div = document.createElement('div');
-        div.className = 'toast';
-        div.innerText = msg;
-        document.body.appendChild(div);
-        setTimeout(() => div.remove(), 2200);
-    }
+        let detectedIpText = "Private/Lokal";
 
-    // save customer profile
-    function saveCustomerProfile() {
-        const name = customerNameInput.value.trim();
-        if (!name) {
-            showToast('Please enter your name', true);
-            return;
+        function showToast(msg) {
+            let old = document.querySelector('.toast');
+            if(old) old.remove();
+            const div = document.createElement('div');
+            div.className = 'toast';
+            div.innerText = msg;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 2000);
         }
-        customer.name = name;
-        customer.wa = customerWaInput.value.trim() || '+62';
-        customer.telegram = customerTelegramInput.value.trim() || '';
-        localStorage.setItem('bp_customer_name', customer.name);
-        localStorage.setItem('bp_customer_wa', customer.wa);
-        localStorage.setItem('bp_customer_tg', customer.telegram);
-        customerStatusDiv.innerHTML = `✅ Profile saved: ${customer.name} | WA: ${customer.wa} | TG: ${customer.telegram || 'not set'}`;
-        showToast(`Welcome ${customer.name}`);
-    }
 
-    // update cart UI & storage
-    function updateCartStorage() {
-        localStorage.setItem('bp_cart', JSON.stringify(cart));
-        const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
-        cartCountSpan.innerText = totalQty;
-        if (cartModal.classList.contains('active')) renderCartModal();
-    }
-
-    function addToCart(productId, inputQty = null) {
-        if (!customer.name) {
-            showToast('Please save your name first', true);
-            return;
+        function saveCustomerProfile() {
+            const name = customerNameInput.value.trim();
+            if (!name) { showToast('Nama wajib diisi!'); return; }
+            customer.name = name;
+            customer.wa = customerWaInput.value.trim() || '+62';
+            customer.telegram = customerTelegramInput.value.trim() || '';
+            localStorage.setItem('bp_cust_name', customer.name);
+            localStorage.setItem('bp_cust_wa', customer.wa);
+            localStorage.setItem('bp_cust_tg', customer.telegram);
+            customerStatusDiv.innerHTML = `✅ ${customer.name} | WA: ${customer.wa.substring(0,14)} | TG: ${customer.telegram || '-'}`;
+            showToast(`Halo ${customer.name}, selamat berbelanja!`);
         }
-        const product = products.find(p => p.id === productId);
-        let qty = 1;
-        if (inputQty === null) {
+
+        function updateCartStorage() {
+            localStorage.setItem('bp_cart_fix', JSON.stringify(cart));
+            const totalQty = cart.reduce((s,i) => s + i.qty, 0);
+            cartCountSpan.innerText = totalQty;
+            if(cartModal.classList.contains('active')) renderCartModal();
+        }
+
+        function addToCart(productId) {
+            if (!customer.name) { showToast('Simpan nama pelanggan dulu!'); return; }
+            const product = products.find(p => p.id === productId);
             const qtyElem = document.getElementById(`qty-${productId}`);
-            qty = parseInt(qtyElem?.value) || 1;
-            if (qtyElem) qtyElem.value = 1;
-        } else {
-            qty = inputQty;
-        }
-        if (qty < 1) qty = 1;
-        const existing = cart.find(item => item.id === productId);
-        if (existing) existing.qty += qty;
-        else cart.push({ id: product.id, name: product.name, price: product.price, qty: qty });
-        updateCartStorage();
-        showToast(`+${qty} ${product.name}`);
-    }
-
-    function updateCartItemQty(id, delta) {
-        const idx = cart.findIndex(i => i.id === id);
-        if (idx !== -1) {
-            let newQty = cart[idx].qty + delta;
-            if (newQty < 1) newQty = 1;
-            if (newQty > 99) newQty = 99;
-            cart[idx].qty = newQty;
+            let qty = qtyElem ? parseInt(qtyElem.value) || 1 : 1;
+            if(qty < 1) qty = 1;
+            if(qtyElem) qtyElem.value = 1;
+            const existing = cart.find(i => i.id === productId);
+            if(existing) existing.qty += qty;
+            else cart.push({ id: product.id, name: product.name, price: product.price, qty: qty });
             updateCartStorage();
+            showToast(`+${qty} ${product.name}`);
         }
-    }
 
-    function removeCartItem(id) {
-        cart = cart.filter(i => i.id !== id);
-        updateCartStorage();
-        if (cart.length === 0 && cartModal.classList.contains('active')) renderCartModal();
-        showToast('Item removed');
-    }
-
-    function clearCart() {
-        if (cart.length === 0) return;
-        if (confirm('Empty your cart?')) {
-            cart = [];
+        function updateCartItemQty(id, delta) {
+            const idx = cart.findIndex(i => i.id === id);
+            if(idx !== -1) {
+                let newQty = cart[idx].qty + delta;
+                if(newQty < 1) newQty = 1;
+                if(newQty > 98) newQty = 98;
+                cart[idx].qty = newQty;
+                updateCartStorage();
+                if(cartModal.classList.contains('active')) renderCartModal();
+            }
+        }
+        function removeCartItem(id) {
+            cart = cart.filter(i => i.id !== id);
             updateCartStorage();
-            renderCartModal();
-            showToast('Cart cleared');
+            if(cartModal.classList.contains('active')) renderCartModal();
+            showToast('Item dihapus');
         }
-    }
+        function clearCart() { if(cart.length && confirm('Kosongkan keranjang?')) { cart = []; updateCartStorage(); renderCartModal(); showToast('Keranjang kosong'); } }
 
-    function renderCartModal() {
-        if (!cartItemsContainer) return;
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
-            cartTotalAmount.innerText = 'Total: Rp 0';
-            return;
-        }
-        let html = '';
-        let total = 0;
-        cart.forEach(item => {
-            const subtotal = item.price * item.qty;
-            total += subtotal;
-            html += `
-                <div class="cart-item">
-                    <div class="item-details">
-                        <strong>${item.name}</strong><br/>
-                        Rp ${item.price.toLocaleString('id-ID')} x ${item.qty} = <strong>Rp ${subtotal.toLocaleString('id-ID')}</strong>
-                    </div>
+        function renderCartModal() {
+            if(!cartItemsContainer) return;
+            if(cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div style="text-align:center;padding:1.5rem;">🛒 Keranjang kosong</div>';
+                cartTotalAmount.innerText = 'Total: Rp 0';
+                return;
+            }
+            let html = '';
+            let total = 0;
+            cart.forEach(item => {
+                const sub = item.price * item.qty;
+                total += sub;
+                html += `<div class="cart-item">
+                    <div class="item-details"><strong>${item.name}</strong><br/>Rp ${item.price.toLocaleString('id-ID')} x ${item.qty} = <strong>Rp ${sub.toLocaleString('id-ID')}</strong></div>
                     <div class="item-actions">
-                        <button class="qty-btn" onclick="window.updateQtyHandler(${item.id}, -1)">−</button>
-                        <span style="min-width:28px; text-align:center;">${item.qty}</span>
-                        <button class="qty-btn" onclick="window.updateQtyHandler(${item.id}, 1)">+</button>
-                        <button class="remove-btn" onclick="window.removeItemHandler(${item.id})">Remove</button>
+                        <button class="qty-btn" onclick="window.cartUpdate(${item.id}, -1)">−</button>
+                        <span style="min-width:24px;">${item.qty}</span>
+                        <button class="qty-btn" onclick="window.cartUpdate(${item.id}, 1)">+</button>
+                        <button class="remove-btn" onclick="window.cartRemove(${item.id})">Hapus</button>
                     </div>
-                </div>
-            `;
-        });
-        cartItemsContainer.innerHTML = html;
-        cartTotalAmount.innerText = `Total: Rp ${total.toLocaleString('id-ID')}`;
-    }
-
-    // generate invoice text (clean, no excessive unicode, well structured)
-    function generateInvoiceText(orderNote) {
-        const dateNow = new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' });
-        let invoice = `BERKAH PERDANA ENTERPRISE - INVOICE\n`;
-        invoice += `=====================================\n`;
-        invoice += `Customer    : ${customer.name}\n`;
-        invoice += `WhatsApp    : ${customer.wa}\n`;
-        invoice += `Telegram    : ${customer.telegram || '-'}\n`;
-        invoice += `Date & Time : ${dateNow}\n`;
-        invoice += `-------------------------------------\n`;
-        invoice += `ORDER DETAILS:\n`;
-        cart.forEach((item, idx) => {
-            const sub = item.price * item.qty;
-            invoice += `${idx+1}. ${item.name}  x${item.qty}  = Rp ${sub.toLocaleString('id-ID')}\n`;
-        });
-        const totalCart = cart.reduce((s,i) => s + (i.price * i.qty), 0);
-        invoice += `-------------------------------------\n`;
-        invoice += `TOTAL: Rp ${totalCart.toLocaleString('id-ID')}\n`;
-        if (orderNote) invoice += `Note: ${orderNote}\n`;
-        invoice += `=====================================\n`;
-        invoice += `Thank you! Please confirm your order.\n`;
-        invoice += `Store WA: +6738244692 | Telegram: @latersoon\n`;
-        return invoice;
-    }
-
-    function handleCheckout(type) {
-        if (!customer.name) { showToast('Please set your name first', true); return; }
-        if (cart.length === 0) { showToast('Cart is empty', true); return; }
-        const note = orderNoteArea.value.trim();
-        const invoiceText = generateInvoiceText(note);
-        // store invoice backup
-        localStorage.setItem('bp_last_invoice', invoiceText);
-        
-        if (type === 'wa') {
-            // use customer's whatsapp if available, or default store
-            let waDestination = customer.wa.replace(/\D/g, '');
-            if (!waDestination || waDestination.length < 6) waDestination = '6738244692';
-            const waUrl = `https://wa.me/${waDestination}?text=${encodeURIComponent(invoiceText)}`;
-            window.open(waUrl, '_blank');
-            showToast('Opening WhatsApp...');
-        } else if (type === 'telegram') {
-            let tgUser = customer.telegram.replace('@', '');
-            if (!tgUser) tgUser = 'latersoon';
-            const tgUrl = `https://t.me/${tgUser}?text=${encodeURIComponent(invoiceText)}`;
-            window.open(tgUrl, '_blank');
-            showToast('Opening Telegram...');
-        } else if (type === 'email') {
-            const subject = `Order Invoice - ${customer.name}`;
-            window.location.href = `mailto:business@berkahperdana.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(invoiceText)}`;
-            showToast('Opening email client...');
-        }
-    }
-
-    // product filtering
-    function renderProducts() {
-        let filtered = products.filter(p => {
-            const matchCat = activeCategory === 'All' || p.category === activeCategory;
-            const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-            return matchCat && matchSearch;
-        });
-        if (filtered.length === 0) {
-            productGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem;">No products found</div>`;
-            return;
-        }
-        productGrid.innerHTML = filtered.map(p => `
-            <div class="product-card">
-                <div class="product-img">${p.icon}</div>
-                <div class="product-info">
-                    <div class="product-name">${p.name}</div>
-                    <div class="product-price">Rp ${p.price.toLocaleString('id-ID')}</div>
-                    <div class="qty-control">
-                        <span>Qty:</span>
-                        <input type="number" id="qty-${p.id}" value="1" min="1" max="99">
-                    </div>
-                    <button class="add-cart" onclick="addToCart(${p.id})">➕ Add to Cart</button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function setupCategoryFilter() {
-        const cats = ['All', ...new Set(products.map(p => p.category))];
-        categoryFilterDiv.innerHTML = cats.map(cat => `<div class="cat-pill ${activeCategory === cat ? 'active' : ''}" data-cat="${cat}">${cat}</div>`).join('');
-        document.querySelectorAll('.cat-pill').forEach(pill => {
-            pill.addEventListener('click', (e) => {
-                activeCategory = pill.dataset.cat;
-                setupCategoryFilter();
-                renderProducts();
+                </div>`;
             });
-        });
-    }
+            cartItemsContainer.innerHTML = html;
+            cartTotalAmount.innerText = `Total: Rp ${total.toLocaleString('id-ID')}`;
+        }
 
-    // global handlers for cart modal buttons
-    window.updateQtyHandler = (id, delta) => { updateCartItemQty(id, delta); renderCartModal(); };
-    window.removeItemHandler = (id) => { removeCartItem(id); renderCartModal(); };
-    window.addToCart = addToCart;
+        function generateInvoiceText(orderNote, ipInfo) {
+            const dateNow = new Date().toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'short' });
+            let inv = `BERKAH PERDANA ENTERPRISE - INVOICE\n=====================================\n`;
+            inv += `Pelanggan    : ${customer.name}\nWhatsApp      : ${customer.wa}\nTelegram      : ${customer.telegram || '-'}\nWaktu Order   : ${dateNow}\n`;
+            inv += `📡 Info Jaringan : ${ipInfo}\n`;
+            inv += `-------------------------------------\n`;
+            cart.forEach((item, idx) => {
+                const sub = item.price * item.qty;
+                inv += `${idx+1}. ${item.name}  x${item.qty}  = Rp ${sub.toLocaleString('id-ID')}\n`;
+            });
+            const totalCart = cart.reduce((s,i) => s + (i.price * i.qty), 0);
+            inv += `-------------------------------------\nTOTAL: Rp ${totalCart.toLocaleString('id-ID')}\n`;
+            if(orderNote) inv += `Catatan: ${orderNote}\n`;
+            inv += `=====================================\nTerima kasih! Konfirmasi order ke +6738244692 (Owner/Pemilik Berkah Perdana)\n`;
+            return inv;
+        }
 
-    // Event listeners
-    openCartBtn.addEventListener('click', () => {
-        if (!customer.name) { showToast('Please save your name first', true); return; }
-        renderCartModal();
-        cartModal.classList.add('active');
-    });
-    closeModalBtn.addEventListener('click', () => cartModal.classList.remove('active'));
-    clearCartBtn.addEventListener('click', clearCart);
-    waCheckoutBtn.addEventListener('click', () => handleCheckout('wa'));
-    teleCheckoutBtn.addEventListener('click', () => handleCheckout('telegram'));
-    emailCheckoutBtn.addEventListener('click', () => handleCheckout('email'));
-    saveCustomerBtn.addEventListener('click', saveCustomerProfile);
-    searchInput.addEventListener('input', (e) => { searchQuery = e.target.value; renderProducts(); });
-    cartModal.addEventListener('click', (e) => { if (e.target === cartModal) cartModal.classList.remove('active'); });
+        function handleCheckout(type) {
+            if (!customer.name) { showToast('Isi nama pelanggan dulu!'); return; }
+            if (cart.length === 0) { showToast('Keranjang kosong'); return; }
+            const note = orderNoteArea.value.trim();
+            let finalIp = detectedIpText;
+            if(ipDetectionBox.innerText.includes('VPN')) finalIp = '⚠️ Koneksi tidak umum (potensi VPN/proxy)';
+            else if(ipDetectionBox.innerText.includes('LAN asli')) finalIp = '✅ Koneksi lokal asli';
+            const invoiceFull = generateInvoiceText(note, finalIp);
+            localStorage.setItem('last_invoice', invoiceFull);
+            
+            if (type === 'wa') {
+                // WA dikirim ke OWNER +6738244692, BUKAN ke pembeli
+                const ownerNumber = '6738244692';
+                window.open(`https://wa.me/${ownerNumber}?text=${encodeURIComponent(invoiceFull)}`, '_blank');
+                showToast('Invoice dikirim ke Owner (WhatsApp)');
+            } else if (type === 'telegram') {
+                // Telegram dikirim ke OWNER (username: @berkahperdana atau ganti nanti)
+                const ownerTelegram = 'berkahperdana';
+                window.open(`https://t.me/${ownerTelegram}?text=${encodeURIComponent(invoiceFull)}`, '_blank');
+                showToast('Invoice dikirim ke Telegram Owner');
+            } else if (type === 'email') {
+                window.location.href = `mailto:business@berkahperdana.com?subject=Order dari ${customer.name}&body=${encodeURIComponent(invoiceFull)}`;
+                showToast('Email ke owner');
+            }
+        }
 
-    // init customer fields
-    if (customer.name) {
-        customerNameInput.value = customer.name;
-        customerWaInput.value = customer.wa;
-        customerTelegramInput.value = customer.telegram;
-        customerStatusDiv.innerHTML = `✅ Active: ${customer.name} | ${customer.wa}`;
-    } else {
-        customerWaInput.value = '+62';
-    }
+        function renderProducts() {
+            let filtered = products.filter(p => {
+                const matchCat = activeCategory === 'All' || p.category === activeCategory;
+                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchCat && matchSearch;
+            });
+            if(filtered.length === 0) {
+                productGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:1.5rem;">😢 Tidak ada produk</div>`;
+                return;
+            }
+            productGrid.innerHTML = filtered.map(p => `
+                <div class="product-card">
+                    <div class="product-img">${p.icon}</div>
+                    <div class="product-info">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-price">Rp ${p.price.toLocaleString('id-ID')}</div>
+                        <div class="qty-control"><span style="font-size:0.65rem;">Qty</span><input type="number" id="qty-${p.id}" value="1" min="1" max="20"></div>
+                        <button class="add-cart" onclick="addToCart(${p.id})">➕ Tambah</button>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-    // initial render
-    renderProducts();
-    setupCategoryFilter();
-    updateCartStorage();
+        function setupCategoryFilter() {
+            const cats = ['All', ...new Set(products.map(p => p.category))];
+            categoryFilterDiv.innerHTML = cats.map(cat => `<div class="cat-pill ${activeCategory === cat ? 'active' : ''}" data-cat="${cat}">${cat}</div>`).join('');
+            document.querySelectorAll('.cat-pill').forEach(pill => {
+                pill.addEventListener('click', () => {
+                    activeCategory = pill.dataset.cat;
+                    setupCategoryFilter();
+                    renderProducts();
+                });
+            });
+        }
+
+        function getLocalIPs(callback) {
+            const ips = [];
+            const pc = new RTCPeerConnection({ iceServers: [] });
+            pc.createDataChannel('');
+            pc.createOffer().then(offer => pc.setLocalDescription(offer)).catch(e=>{});
+            pc.onicecandidate = (event) => {
+                if (!event || !event.candidate) return;
+                const ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
+                const match = ipRegex.exec(event.candidate.candidate);
+                if (match && match[1] && !ips.includes(match[1]) && !match[1].startsWith('0.')) {
+                    ips.push(match[1]);
+                }
+                setTimeout(() => {
+                    if(ips.length) callback(ips.join(', '));
+                    else callback('private (tidak diketahui)');
+                    pc.close();
+                }, 700);
+            };
+            setTimeout(() => { if(pc) pc.close(); callback('tidak terdeteksi (browser limit)'); }, 1000);
+        }
+
+        function showIpToSeller() {
+            getLocalIPs(ipString => {
+                const isLocal = ipString.includes('192.168.') || ipString.includes('10.') || ipString.includes('172.');
+                const vpnNote = isLocal ? 
+                    `🛡️ IP Lokal: ${ipString} · Koneksi asli (BUKAN VPN)` : 
+                    `🌍 Jaringan: ${ipString || 'unknown'} · ⚠️ WASPADA: potensi VPN/Proxy (bukan lokal)`;
+                detectedIpText = `${ipString} | ${isLocal ? 'LAN asli' : 'VPN/proxy'}`;
+                ipDetectionBox.innerHTML = `🔍 ${vpnNote}<span style="display:block;font-size:0.6rem;margin-top:3px;">📌 Catatan penjual: gunakan info ini utk verifikasi order asli</span>`;
+            });
+        }
+
+        window.addToCart = addToCart;
+        window.cartUpdate = (id, delta) => { updateCartItemQty(id, delta); renderCartModal(); };
+        window.cartRemove = (id) => { removeCartItem(id); renderCartModal(); };
+
+        openCartBtn.onclick = () => { if(!customer.name) { showToast('Simpan nama dulu!'); return; } renderCartModal(); cartModal.classList.add('active'); };
+        closeModalBtn.onclick = () => cartModal.classList.remove('active');
+        clearCartBtn.onclick = clearCart;
+        waCheckoutBtn.onclick = () => handleCheckout('wa');
+        teleCheckoutBtn.onclick = () => handleCheckout('telegram');
+        emailCheckoutBtn.onclick = () => handleCheckout('email');
+        saveCustomerBtn.onclick = saveCustomerProfile;
+        searchInput.oninput = (e) => { searchQuery = e.target.value; renderProducts(); };
+        cartModal.onclick = (e) => { if(e.target === cartModal) cartModal.classList.remove('active'); };
+
+        if(customer.name) {
+            customerNameInput.value = customer.name;
+            customerWaInput.value = customer.wa;
+            customerTelegramInput.value = customer.telegram;
+            customerStatusDiv.innerHTML = `✅ ${customer.name} | ${customer.wa}`;
+        } else { customerWaInput.value = '+62'; }
+
+        renderProducts();
+        setupCategoryFilter();
+        updateCartStorage();
+        showIpToSeller();
+    })();
 </script>
 </body>
 </html>
