@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Invoice | Owner Only | Berkah Perdana</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; 
+            background: #0f3d36; 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .container { max-width: 550px; width: 100%; margin: 0 auto; }
+        .card { 
+            background: white; 
+            border-radius: 32px; 
+            padding: 2rem 1.5rem; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        h2 { color: #0f3d36; margin-bottom: 0.5rem; }
+        .sub { color: #5a7c72; font-size: 0.8rem; margin-bottom: 1.5rem; }
+        input, button { 
+            padding: 0.8rem 1rem; 
+            border-radius: 60px; 
+            border: 1px solid #cbdcd6; 
+            width: 100%; 
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+        }
+        button { 
+            background: #0f3d36; 
+            color: white; 
+            font-weight: bold; 
+            cursor: pointer;
+            border: none;
+            transition: 0.2s;
+        }
+        button:hover { background: #1f6e5c; }
+        .error { 
+            color: #e05a5a; 
+            font-size: 0.8rem; 
+            margin-top: 0.8rem; 
+            text-align: center;
+            background: #ffe0e0;
+            padding: 0.5rem;
+            border-radius: 40px;
+        }
+        .invoice-detail { 
+            background: #f9fcfb; 
+            border-radius: 24px; 
+            padding: 1.2rem; 
+            margin-top: 1.5rem; 
+            border: 1px solid #d9e5e0;
+        }
+        hr { margin: 0.8rem 0; }
+        .back-link { 
+            display: inline-block; 
+            margin-top: 1rem; 
+            color: #1f6e5c; 
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .logout-btn {
+            background: #e05a5a;
+            margin-top: 1rem;
+        }
+        .logout-btn:hover { background: #c03939; }
+        .header-track {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .badge-owner {
+            background: #0f3d36;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+        /* Gaya untuk meme dance fullscreen */
+        .meme-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .meme-video {
+            max-width: 100%;
+            max-height: 80%;
+        }
+        .meme-text {
+            color: white;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            font-weight: bold;
+            background: red;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+        }
+        .close-meme {
+            margin-top: 1rem;
+            background: white;
+            color: black;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card" id="loginCard">
+        <h2>🔐 Owner Access Only</h2>
+        <div class="sub">Masukkan username & password untuk mengakses tracking invoice</div>
+        <input type="text" id="usernameInput" placeholder="Username" autocomplete="off">
+        <input type="password" id="passwordInput" placeholder="Password" autocomplete="off">
+        <button id="loginBtn">Masuk ke Dashboard</button>
+        <div id="loginError"></div>
+        <a href="index.html" class="back-link">← Kembali ke Toko</a>
+    </div>
+
+    <div class="card" id="trackCard" style="display:none;">
+        <div class="header-track">
+            <h2>🔍 Lacak Invoice</h2>
+            <span class="badge-owner">OWNER MODE</span>
+        </div>
+        <div class="sub">Masukkan Invoice ID yang diberikan customer</div>
+        <input type="text" id="invoiceIdInput" placeholder="Contoh: BP2505151234" autocomplete="off">
+        <button id="trackBtn">Cari Invoice</button>
+        <button id="logoutBtn" class="logout-btn">🚪 Logout & Keluar</button>
+        <div id="result"></div>
+        <a href="index.html" class="back-link">← Kembali ke Toko</a>
+    </div>
+</div>
+
+<script>
+    // ======================== KONFIGURASI ========================
+    // GANTI USERNAME & PASSWORD DI SINI BRO!
+    const VALID_USERNAME = "berkahowner";
+    const VALID_PASSWORD = "berkah123";
+    
+    // Nama folder rahasia dan file kunci (HARUS DIHAPUS KALAU MAU LOGIN NORMAL)
+    // File ini harus ditaruh di folder: .secret/key.txt
+    const SECRET_FOLDER = ".secret";
+    const SECRET_FILE = "key.txt";
+    
+    // Path lengkap file kunci (relatif terhadap folder yang sama dengan track.html)
+    // Contoh URL: https://namauser.github.io/nama-repo/.secret/key.txt
+    const SECRET_FILE_URL = "./.secret/key.txt";
+    
+    // ======================== STATE ========================
+    let isLoggedIn = sessionStorage.getItem('owner_logged_in') === 'true';
+    let isRealLogin = false; // Flag apakah login beneran atau fake
+    
+    const loginCard = document.getElementById('loginCard');
+    const trackCard = document.getElementById('trackCard');
+    const usernameInput = document.getElementById('usernameInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const loginBtn = document.getElementById('loginBtn');
+    const loginError = document.getElementById('loginError');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const trackBtn = document.getElementById('trackBtn');
+    const invoiceIdInput = document.getElementById('invoiceIdInput');
+    const resultDiv = document.getElementById('result');
+    
+    // ======================== FUNGSI MEME DANCE ========================
+    function showMemeDance() {
+        // Hapus semua yang ada di body, tampilkan meme
+        const existingOverlay = document.querySelector('.meme-overlay');
+        if(existingOverlay) existingOverlay.remove();
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'meme-overlay';
+        
+        // Pilihan meme dance (ganti URL sesuai keinginan lo)
+        // Opsi 1: Rickroll (klasik)
+        // Opsi 2: Dancing Groot / Panda / Cat
+        // Opsi 3: Lo bisa upload meme sendiri ke GitHub terus link
+        
+        const memeHTML = `
+            <video class="meme-video" autoplay loop muted playsinline>
+                <source src="https://media.giphy.com/media/xTk9ZMHMnLVeRtM4Gc/giphy.gif?cid=790b7611y1vk2k8z01o1e4a5c6d7e8f9a0b1c2d3e4f5g6h7" type="video/mp4">
+                Maaf, gagal load meme. Tapi lo kena prank! 🤣
+            </video>
+            <div class="meme-text">🤡 PRANKED! 🤡</div>
+            <div class="meme-text" style="font-size:1rem; margin-top:0.5rem;">Hacker jahat kena jebakan! 🔥</div>
+            <button class="close-meme" onclick="this.parentElement.remove()">Tutup & Menangis 😭</button>
+        `;
+        
+        overlay.innerHTML = memeHTML;
+        document.body.appendChild(overlay);
+        
+        // Fallback kalau GIF gagal load
+        setTimeout(() => {
+            if(document.querySelector('.meme-video') && document.querySelector('.meme-video').readyState === 0) {
+                const video = document.querySelector('.meme-video');
+                if(video) video.innerHTML = '<img src="https://media.tenor.com/2QmUqc6n0kIAAAAi/pepe-frog-pepe-dance.gif" style="max-width:100%;">';
+            }
+        }, 2000);
+    }
+    
+    // ======================== CEK FILE KUNCI (Backdoor Manual Removal) ========================
+    async function isSecretFileExists() {
+        try {
+            const response = await fetch(SECRET_FILE_URL, {
+                method: 'HEAD',
+                cache: 'no-store'
+            });
+            // Kalau file ada (status 200), return true
+            return response.ok;
+        } catch (error) {
+            // Kalau error (file not found, CORS, dll) anggap file tidak ada
+            console.log("Secret file tidak ditemukan atau error:", error);
+            return false;
+        }
+    }
+    
+    // ======================== FAKE LOGIN (TAPI TAMPILAN TETAP MASUK) ========================
+    function showFakeDashboard() {
+        // Tampilkan dashboard palsu tapi gak bisa track invoice beneran
+        loginCard.style.display = 'none';
+        trackCard.style.display = 'block';
+        
+        // Ganti tampilan jadi mode fake (kasih warning)
+        const badge = document.querySelector('.badge-owner');
+        if(badge) {
+            badge.style.background = '#e05a5a';
+            badge.innerHTML = 'FAKE MODE 🤡';
+        }
+        
+        // Kasih teks peringatan di result
+        resultDiv.innerHTML = `
+            <div class="invoice-detail" style="border: 2px solid #e05a5a;">
+                <h3 style="color:#e05a5a;">⚠️ JEBBAKKAN HACKER! ⚠️</h3>
+                <hr>
+                <p>Anda berhasil login TAPI ini MODE PALSU.</p>
+                <p>🔐 Untuk akses asli, owner harus menghapus file:</p>
+                <p><code style="background:#eee; padding:0.2rem 0.5rem; border-radius:8px;">${SECRET_FOLDER}/${SECRET_FILE}</code></p>
+                <hr>
+                <p>🤣 Silakan nikmati meme dance!</p>
+                <button id="triggerMemeBtn" style="background:#e05a5a; color:white; border:none; padding:0.5rem 1rem; border-radius:40px; margin-top:0.5rem;">👉 Tampilkan Meme Dance 👈</button>
+            </div>
+        `;
+        
+        document.getElementById('triggerMemeBtn')?.addEventListener('click', showMemeDance);
+        
+        // Override trackBtn biar gak bisa tracking beneran
+        trackBtn.onclick = () => {
+            showMemeDance();
+        };
+    }
+    
+    // ======================== REAL LOGIN ========================
+    function showRealDashboard() {
+        loginCard.style.display = 'none';
+        trackCard.style.display = 'block';
+        
+        // Reset badge ke normal
+        const badge = document.querySelector('.badge-owner');
+        if(badge) {
+            badge.style.background = '#0f3d36';
+            badge.innerHTML = 'OWNER MODE ✅';
+        }
+        
+        resultDiv.innerHTML = '';
+        
+        // Reset trackBtn ke fungsi normal
+        trackBtn.onclick = trackInvoice;
+    }
+    
+    // ======================== FUNGSI LOGIN UTAMA ========================
+    async function doLogin() {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        
+        // Validasi username & password
+        if(username !== VALID_USERNAME || password !== VALID_PASSWORD) {
+            loginError.innerHTML = '<div class="error">❌ Username atau password salah!</div>';
+            return;
+        }
+        
+        // Cek apakah file kunci masih ada
+        const secretExists = await isSecretFileExists();
+        
+        if(secretExists) {
+            // 🔥 FILE KUNCI MASIH ADA → FAKE LOGIN + MEME
+            loginError.innerHTML = '<div class="error">⚠️ Verifikasi keamanan... (tunggu sebentar)</div>';
+            setTimeout(() => {
+                loginError.innerHTML = '';
+                showFakeDashboard();
+                // Tampilkan meme dance setelah 1 detik biar makin jengkel hacker
+                setTimeout(() => showMemeDance(), 800);
+            }, 500);
+        } else {
+            // ✅ FILE KUNCI SUDAH DIHAPUS → LOGIN NORMAL
+            isLoggedIn = true;
+            isRealLogin = true;
+            sessionStorage.setItem('owner_logged_in', 'true');
+            loginError.innerHTML = '';
+            usernameInput.value = '';
+            passwordInput.value = '';
+            showRealDashboard();
+        }
+    }
+    
+    // ======================== FUNGSI TRACK INVOICE (REAL) ========================
+    function trackInvoice() {
+        let id = document.getElementById('invoiceIdInput').value.trim().toUpperCase();
+        if(!id) { 
+            resultDiv.innerHTML = '<div class="error">Masukkan Invoice ID!</div>'; 
+            return; 
+        }
+        
+        let invoices = JSON.parse(localStorage.getItem('bp_invoices') || '[]');
+        let invoice = invoices.find(inv => inv.id === id);
+        
+        if(!invoice) {
+            resultDiv.innerHTML = '<div class="invoice-detail"><p>❌ Invoice tidak ditemukan. Periksa ID kembali.</p></div>';
+            return;
+        }
+        
+        let itemsHtml = invoice.items.map(item => `<li>${item.name} x${item.qty} = Rp ${(item.price*item.qty).toLocaleString('id-ID')}</li>`).join('');
+        let date = new Date(invoice.date).toLocaleString('id-ID');
+        let targetDate = new Date(invoice.targetDate).toLocaleDateString('id-ID');
+        
+        let isVPN = invoice.ip && (invoice.ip.includes('192.168.') || invoice.ip.includes('10.') || invoice.ip.includes('172.'));
+        let vpnWarning = isVPN ? '✅ Koneksi lokal asli' : '⚠️ Potensi VPN / Proxy (waspada)';
+        
+        resultDiv.innerHTML = `
+            <div class="invoice-detail">
+                <h3>✅ INVOICE #${invoice.id}</h3>
+                <hr>
+                <p><strong>👤 Nama:</strong> ${invoice.name}</p>
+                <p><strong>📍 Alamat:</strong> ${invoice.address}</p>
+                <p><strong>📞 WhatsApp:</strong> ${invoice.wa || '-'}</p>
+                <p><strong>📧 Kontak Alt:</strong> ${invoice.altContact || '-'}</p>
+                <p><strong>📝 Catatan:</strong> ${invoice.notes || '-'}</p>
+                <p><strong>📅 Tgl Order:</strong> ${date}</p>
+                <p><strong>🚚 Target Kirim:</strong> ${targetDate}</p>
+                <p><strong>💰 Metode Bayar:</strong> ${invoice.paymentMethod}</p>
+                <hr>
+                <strong>🛍️ Pesanan:</strong>
+                <ul style="margin-left:1.2rem; margin-top:0.3rem;">${itemsHtml}</ul>
+                <hr>
+                <p><strong>💵 TOTAL: Rp ${invoice.total.toLocaleString('id-ID')}</strong></p>
+                <p><strong>🌐 IP/Device:</strong> ${invoice.ip} | ${invoice.device}</p>
+                <p><strong>🛡️ Status Koneksi:</strong> ${vpnWarning}</p>
+                <hr>
+                <p><small>🔐 Hanya owner yang bisa melihat detail ini. Simpan arsip invoice.</small></p>
+            </div>
+        `;
+    }
+    
+    // ======================== LOGOUT ========================
+    function doLogout() {
+        sessionStorage.removeItem('owner_logged_in');
+        isLoggedIn = false;
+        isRealLogin = false;
+        trackCard.style.display = 'none';
+        loginCard.style.display = 'block';
+        resultDiv.innerHTML = '';
+        invoiceIdInput.value = '';
+        usernameInput.value = '';
+        passwordInput.value = '';
+        loginError.innerHTML = '';
+    }
+    
+    // ======================== EVENT LISTENERS ========================
+    loginBtn.onclick = doLogin;
+    logoutBtn.onclick = doLogout;
+    
+    usernameInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') doLogin(); });
+    passwordInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') doLogin(); });
+    invoiceIdInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') trackInvoice(); });
+    
+    // Jika sudah login sebelumnya (real login), langsung tampilkan trackCard
+    if(isLoggedIn) {
+        // Coba validasi lagi apakah file kunci masih ada?
+        isSecretFileExists().then(secretExists => {
+            if(secretExists) {
+                // File kunci muncul lagi? Logout paksa
+                sessionStorage.removeItem('owner_logged_in');
+                loginCard.style.display = 'block';
+                trackCard.style.display = 'none';
+                loginError.innerHTML = '<div class="error">🔐 Sesi kadaluarsa. Login ulang.</div>';
+            } else {
+                showRealDashboard();
+            }
+        });
+    }
+</script>
+</body>
+</html>
