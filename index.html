@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berkah Perdana Enterprise</title>
+    <style>
+        :root {
+            --primary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f6fa;
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--dark);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--white);
+            font-weight: normal;
+            font-size: 0.9rem;
+        }
+
+        .cart-icon {
+            background: var(--primary);
+            border: none;
+            color: var(--white);
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .cart-icon:hover {
+            background: #27ae60;
+            transform: scale(1.05);
+        }
+
+        .cart-count {
+            background: #e74c3c;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
+            margin-left: 0.3rem;
+        }
+
+        /* USERNAME INPUT */
+        .username-section {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .username-input {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--white);
+            padding: 0.8rem 1.2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            flex-wrap: wrap;
+        }
+
+        .username-input label {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .username-input input {
+            flex: 1;
+            min-width: 180px;
+            padding: 0.6rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .username-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(46,204,113,0.2);
+        }
+
+        .username-input button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .username-input button:hover {
+            background: #27ae60;
+        }
+
+        .username-display {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* GRID PRODUK */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 2rem 0 1.5rem;
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .product-info {
+            padding: 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .product-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .product-qty {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-qty input {
+            width: 60px;
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            margin-top: auto;
+        }
+
+        .add-to-cart:hover {
+            background: #27ae60;
+        }
+
+        /* MODAL KERANJANG */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 1.2rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            z-index: 10;
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+        }
+
+        .close-btn {
+            background: #e74c3c;
+            color: var(--white);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #c0392b;
+        }
+
+        .cart-items {
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .remove-item {
+            background: #e74c3c;
+            color: var(--white);
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .remove-item:hover {
+            background: #c0392b;
+        }
+
+        .cart-total {
+            padding: 1rem;
+            border-top: 2px solid var(--dark);
+            text-align: right;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .modal-footer {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .checkout-buttons {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 140px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+        }
+
+        .btn-telegram {
+            background: #0088cc;
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            flex: 1;
+            min-width: 140px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-telegram:hover {
+            background: #006699;
+            transform: scale(1.02);
+        }
+
+        .btn-email {
+            background: var(--dark);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-email:hover {
+            background: #1a252f;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--dark);
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--dark);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 25px;
+            z-index: 300;
+            animation: fadeInOut 2s ease forwards;
+            font-weight: bold;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            15% { opacity: 1; transform: translateY(0); }
+            85% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .header-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .product-img {
+                height: 140px;
+                font-size: 2rem;
+            }
+
+            .product-info {
+                padding: 0.8rem;
+            }
+
+            .product-name {
+                font-size: 0.9rem;
+            }
+
+            .product-price {
+                font-size: 1rem;
+            }
+
+            .checkout-buttons {
+                flex-direction: column;
+            }
+
+            .username-input {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .modal {
+                max-height: 90vh;
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                🏪 Berkah Perdana <span>Enterprise</span>
+            </div>
+            <button class="cart-icon" onclick="openCart()">
+                🛒 Keranjang <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- USERNAME -->
+    <div class="username-section">
+        <div class="username-input">
+            <label>👤 Username:</label>
+            <input type="text" id="usernameInput" placeholder="Masukkan username kamu...">
+            <button onclick="saveUsername()">💾 Simpan</button>
+            <span class="username-display" id="usernameDisplay"></span>
+        </div>
+    </div>
+
+    <!-- PRODUK -->
+    <div class="container">
+        <h2 class="section-title">📦 Produk Kami</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- Produk di-generate JS -->
+        </div>
+    </div>
+
+    <!-- MODAL KERANJANG -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>🛒 Keranjang Belanja</h3>
+                <button class="close-btn" onclick="closeCart()">✕</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">😴 Keranjang masih kosong nih...</div>
+            </div>
+            <div class="cart-total" id="cartTotal">Total: Rp 0</div>
+            <div class="modal-footer">
+                <div class="checkout-buttons">
+                    <button class="btn-whatsapp" onclick="checkoutWhatsApp()">
+                        💬 WhatsApp
+                    </button>
+                    <button class="btn-telegram" onclick="checkoutTelegram()">
+                        ✈️ Telegram
+                    </button>
+                </div>
+                <button class="btn-email" onclick="checkoutEmail()">
+                    📧 Email Invoice
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Berkah Perdana Enterprise | WhatsApp: +628138244692 | Telegram: @latersoon | business@berkahperdana.com
+    </footer>
+
+    <script>
+        // ========== DATA PRODUK (GANTI SESUAI PRODUK ASLI) ==========
+        const products = [
+            { id: 1, name: 'Beras Premium 5kg', price: 75000, icon: '🍚' },
+            { id: 2, name: 'Minyak Goreng 2L', price: 38000, icon: '🫒' },
+            { id: 3, name: 'Gula Pasir 1kg', price: 15000, icon: '🍬' },
+            { id: 4, name: 'Telur Ayam 1 Tray', price: 55000, icon: '🥚' },
+            { id: 5, name: 'Tepung Terigu 1kg', price: 12000, icon: '🌾' },
+            { id: 6, name: 'Kopi Bubuk 250gr', price: 35000, icon: '☕' },
+            { id: 7, name: 'Susu UHT 1L', price: 18000, icon: '🥛' },
+            { id: 8, name: 'Sabun Mandi Lifebuoy', price: 5000, icon: '🧼' },
+        ];
+
+        // ========== STATE ==========
+        let cart = JSON.parse(localStorage.getItem('bpcart') || '[]');
+        let username = localStorage.getItem('bpusername') || '';
+
+        // ========== INIT ==========
+        function init() {
+            renderProducts();
+            updateCartCount();
+            if (username) {
+                document.getElementById('usernameInput').value = username;
+                document.getElementById('usernameDisplay').textContent = `✅ Login sebagai: ${username}`;
+            }
+        }
+
+        // ========== RENDER PRODUK ==========
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="product-img">${p.icon}</div>
+                    <div class="product-info">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-price">Rp ${p.price.toLocaleString('id-ID')}</div>
+                        <div class="product-qty">
+                            <label>Qty:</label>
+                            <input type="number" id="qty-${p.id}" value="1" min="1" max="99">
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${p.id})">
+                            🛒 Masukkan Keranjang
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ========== SAVE USERNAME ==========
+        function saveUsername() {
+            const input = document.getElementById('usernameInput').value.trim();
+            if (!input) {
+                showToast('⚠️ Username jangan kosong ya!');
+                return;
+            }
+            username = input;
+            localStorage.setItem('bpusername', username);
+            document.getElementById('usernameDisplay').textContent = `✅ Login sebagai: ${username}`;
+            showToast('✅ Username tersimpan!');
+        }
+
+        // ========== ADD TO CART ==========
+        function addToCart(productId) {
+            const qtyInput = document.getElementById(`qty-${productId}`);
+            const qty = parseInt(qtyInput.value) || 1;
+            const product = products.find(p => p.id === productId);
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    qty: qty
+                });
+            }
+
+            localStorage.setItem('bpcart', JSON.stringify(cart));
+            updateCartCount();
+            showToast(`✅ ${product.name} (${qty}x) ditambahkan!`);
+            qtyInput.value = 1; // reset qty
+        }
+
+        // ========== UPDATE CART COUNT ==========
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').textContent = totalItems;
+        }
+
+        // ========== OPEN CART MODAL ==========
+        function openCart() {
+            if (!username) {
+                showToast('⚠️ Isi username dulu ya!');
+                document.getElementById('usernameInput').focus();
+                return;
+            }
+            renderCart();
+            document.getElementById('cartModal').classList.add('active');
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+
+        function renderCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalDiv = document.getElementById('cartTotal');
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<div class="empty-cart">😴 Keranjang masih kosong nih...</div>';
+                cartTotalDiv.textContent = 'Total: Rp 0';
+                return;
+            }
+
+            cartItemsDiv.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">
+                            Rp ${item.price.toLocaleString('id-ID')} x ${item.qty} = 
+                            <strong>Rp ${(item.price * item.qty).toLocaleString('id-ID')}</strong>
+                        </div>
+                    </div>
+                    <button class="remove-item" onclick="removeItem(${index})">🗑️ Hapus</button>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            cartTotalDiv.textContent = `Total: Rp ${total.toLocaleString('id-ID')}`;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('bpcart', JSON.stringify(cart));
+            updateCartCount();
+            renderCart();
+            if (cart.length === 0) closeCart();
+            showToast('🗑️ Item dihapus dari keranjang');
+        }
+
+        // ========== GENERATE INVOICE TEXT ==========
+        function generateInvoiceText() {
+            const date = new Date().toLocaleDateString('id-ID', {
+                day: 'numeric', month: 'long', year: 'numeric'
+            });
+            const time = new Date().toLocaleTimeString('id-ID', {
+                hour: '2-digit', minute: '2-digit'
+            });
+
+            let text = `📦 *INVOICE BERKAH PERDANA ENTERPRISE*\n`;
+            text += `====================================\n`;
+            text += `👤 Username: *${username}*\n`;
+            text += `📅 Tanggal: ${date} ${time}\n`;
+            text += `------------------------------------\n`;
+            text += `📋 *Detail Produk:*\n`;
+
+            cart.forEach((item, i) => {
+                const subtotal = item.price * item.qty;
+                text += `  ${i + 1}. ${item.name}\n`;
+                text += `     ${item.qty}x Rp ${item.price.toLocaleString('id-ID')} = Rp ${subtotal.toLocaleString('id-ID')}\n`;
+            });
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            text += `------------------------------------\n`;
+            text += `💰 *TOTAL: Rp ${total.toLocaleString('id-ID')}*\n`;
+            text += `====================================\n`;
+            text += `🙏 Mohon dikonfirmasi ya kak!\n`;
+            text += `📞 WA: +628138244692 | ✈️ @latersoon`;
+
+            return text;
+        }
+
+        // ========== CHECKOUT WHATSAPP ==========
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast('⚠️ Keranjang kosong!');
+                return;
+            }
+
+            const invoiceText = generateInvoiceText();
+            const waNumber = '628138244692'; // tanpa +
+            const waMessage = encodeURIComponent(invoiceText);
+            const waURL = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+            // Simpan invoice ke localStorage buat email nanti
+            localStorage.setItem('bpinvoice', invoiceText);
+
+            window.open(waURL, '_blank');
+            showToast('💬 Membuka WhatsApp...');
+        }
+
+        // ========== CHECKOUT TELEGRAM ==========
+        function checkoutTelegram() {
+            if (cart.length === 0) {
+                showToast('⚠️ Keranjang kosong!');
+                return;
+            }
+
+            const invoiceText = generateInvoiceText();
+            const telegramUsername = 'latersoon';
+            const tgMessage = encodeURIComponent(invoiceText);
+            const tgURL = `https://t.me/${telegramUsername}?text=${tgMessage}`;
+
+            // Simpan invoice ke localStorage buat email nanti
+            localStorage.setItem('bpinvoice', invoiceText);
+
+            window.open(tgURL, '_blank');
+            showToast('✈️ Membuka Telegram...');
+        }
+
+        // ========== CHECKOUT EMAIL ==========
+        function checkoutEmail() {
+            if (cart.length === 0) {
+                showToast('⚠️ Keranjang kosong!');
+                return;
+            }
+
+            const invoiceText = generateInvoiceText();
+            const email = 'business@berkahperdana.com';
+            const subject = encodeURIComponent(`Invoice - ${username} - ${new Date().toLocaleDateString('id-ID')}`);
+            const body = encodeURIComponent(invoiceText);
+            const mailtoURL = `mailto:${email}?subject=${subject}&body=${body}`;
+
+            // Simpan invoice
+            localStorage.setItem('bpinvoice', invoiceText);
+
+            window.location.href = mailtoURL;
+            showToast('📧 Membuka Email Client...');
+        }
+
+        // ========== TOAST NOTIFICATION ==========
+        function showToast(message) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => toast.remove(), 2200);
+        }
+
+        // ========== CLOSE MODAL ON OVERLAY CLICK ==========
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) closeCart();
+        });
+
+        // ========== INIT APP ==========
+        init();
+    </script>
+</body>
+</html>
